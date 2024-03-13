@@ -545,6 +545,11 @@ require('lazy').setup({
         -- tsserver = {},
         --
 
+        eslint = {
+          -- This is required to work with NPM Workspaces
+          root_dir = require('lspconfig.util').find_git_ancestor,
+        },
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
