@@ -619,6 +619,7 @@ require('lazy').setup({
       },
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'goimports', 'gofmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -809,6 +810,71 @@ require('lazy').setup({
 
   {
     'github/copilot.vim',
+  },
+
+  {
+    'rmagatti/auto-session',
+    config = function()
+      -- Auto Session
+      --  This plugin will automatically save and restore your session
+      --  when you close and open Neovim. It's a great way to keep your
+      --  workspace organized and ready to go when you open Neovim.
+      --
+      --  You can also manually save and restore sessions with:
+      --    :SaveSession
+      --    :RestoreSession
+      --
+      --  You can also disable auto-session for certain directories by adding
+      --  them to the `auto_session_suppress_dirs` list.
+      require('auto-session').setup {
+        auto_restore_enabled = true,
+        auto_session_enable_last_session = false,
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_session_suppress_dirs = nil,
+      }
+    end,
+  },
+
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+
+      -- REQUIRED
+      harpoon:setup()
+      -- REQUIRED
+
+      vim.keymap.set('n', '<leader>a', function()
+        harpoon:list():append()
+      end)
+      vim.keymap.set('n', '<C-e>', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+
+      vim.keymap.set('n', '<C-h>', function()
+        harpoon:list():select(1)
+      end)
+      vim.keymap.set('n', '<C-j>', function()
+        harpoon:list():select(2)
+      end)
+      vim.keymap.set('n', '<C-k>', function()
+        harpoon:list():select(3)
+      end)
+      vim.keymap.set('n', '<C-l>', function()
+        harpoon:list():select(4)
+      end)
+
+      -- Toggle previous & next buffers stored within Harpoon list
+      vim.keymap.set('n', '<C-S-P>', function()
+        harpoon:list():prev()
+      end)
+      vim.keymap.set('n', '<C-S-N>', function()
+        harpoon:list():next()
+      end)
+    end,
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
