@@ -192,6 +192,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- [[ Basic Autocommands ]]
 vim.keymap.set('n', '<leader>C', ':let @+ = expand("%")<cr>', { desc = 'Copy relative path' })
+vim.keymap.set('n', '<leader>x', ':Ex<cr>', { desc = 'Explorer' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
