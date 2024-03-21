@@ -798,6 +798,8 @@ require('lazy').setup({
     end,
   },
 
+  'nvim-treesitter/nvim-treesitter-context',
+
   {
     'github/copilot.vim',
   },
